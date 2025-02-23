@@ -66,7 +66,8 @@ function afficher_enonce(num, localStorage)
                     `;
     spanForm = document.getElementById('form');
     spanForm.innerHTML = codeHTML;
-    MathJax.typeset();
+    // Réactualiser MathJax pour reprocesser les expressions LaTeX
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
 
 

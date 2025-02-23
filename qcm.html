@@ -4,6 +4,7 @@
     <head>
         
         <title>Exercice</title>
+
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
             extensions: ["tex2jax.js"], jax: ["input/TeX", "output/HTML-CSS"],
@@ -12,6 +13,8 @@
             displayMath: [ ['$$','$$'], ["\\[","\\]"] ], processEscapes: true }
             });
         </script>
+        
+
         <script>
             window.onload = function() {
                 const params = new URLSearchParams(window.location.search);
@@ -35,7 +38,6 @@
             function mainScript(scriptName) {
                 definir();
                 afficher_enonce(nb_questions, scriptName);
-                location.reload();
             }
         </script>
         
