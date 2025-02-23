@@ -29,16 +29,11 @@ function afficher_enonce(num, localStorage)
                         <b> ` + nq + `. </b>
                         ` + tab_enonce[ta[nq]][0] + 
                         `<br> <p> ` + tab_enonce[ta[nq]][1] + `</p>`;
-        for (i=0; i<nb_prop; i++)
-        {
-            codeHTML = codeHTML + 
-                        `
-                        <label class="radio-container">
-                            <input type="radio" name="q1">` + tab_prop[ta[nq]][i] + `
-                            <span class="checkmark"></span>
-                        </label>
-                        `;
-        }
+        codeHTML = codeHTML +
+                    `
+                    <input type="text" class="zone_saisie" name="in" autocomplete="off" size='30'
+                        onkeypress="javascript:if (event.keyCode == 13) {verif('saisie_1',3);return false;}"/>
+                    `;
         codeHTML = codeHTML +
                     `
                     </div>
