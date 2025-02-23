@@ -66,6 +66,7 @@ function afficher_enonce(num, localStorage)
                     `;
     spanForm = document.getElementById('form');
     spanForm.innerHTML = codeHTML;
+    MathJax.typeset();
 }
 
 
