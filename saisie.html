@@ -15,7 +15,7 @@
                     script.src = scriptURL;
                     script.onload = function() {
                         // Script principal à exécuter après le script dynamique
-                        mainScript();
+                        mainScript(scriptName);
                     };
                     document.head.appendChild(script);
                 } else {
@@ -24,9 +24,9 @@
                 }
             };
 
-            function mainScript() {
+            function mainScript(scriptName) {
                 definir();
-                afficher_enonce(nb_questions, "'aff_def_exo1'");
+                afficher_enonce(nb_questions, scriptName);
                 MathJax.Hub.Config({
                 extensions: ["tex2jax.js"], jax: ["input/TeX", "output/HTML-CSS"],
                 TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"] },

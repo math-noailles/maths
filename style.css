@@ -133,6 +133,15 @@ form
     box-shadow: 0.2em 0.2em 10px rgba(0, 0, 0, 0.5);
 }
 
+.zone_saisie1
+{
+    font-size: 18px;
+    font-family: Arial;
+    border: 2px #bbb inset;
+    color:#000010;
+    width:50px;
+}
+
 .bouton1
 {
     background-color:#8e8d8a;

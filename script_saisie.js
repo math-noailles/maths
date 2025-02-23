@@ -31,8 +31,8 @@ function afficher_enonce(num, localStorage)
                         `<br> <p> ` + tab_enonce[ta[nq]][1] + `</p>`;
         codeHTML = codeHTML +
                     `
-                    <input type="text" class="zone_saisie" name="in" autocomplete="off" size='30'
-                        onkeypress="javascript:if (event.keyCode == 13) {verif('saisie_1',3);return false;}"/>
+                    <input type='text' class='zone_saisie1' id='inp1' autocomplete='off'
+                        onkeypress="javascript:if (event.keyCode == 13) {verif('f` + nq + `', ` + nq + `);return false;}"/>
                     `;
         codeHTML = codeHTML +
                     `
@@ -61,16 +61,22 @@ function afficher_enonce(num, localStorage)
                     `;
     spanForm = document.getElementById('form');
     spanForm.innerHTML = codeHTML;
+    // Réactualiser MathJax pour reprocesser les expressions LaTeX
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
 
 
 function verif(nom_form,  k)
 {
     form = document.forms[nom_form];
-    tab_radio = form.querySelectorAll('input[name="q1"][type="radio"]');
+    input_saisie = form.querySelector("#inp1");
+    repon = input_saisie.value;
+    repon = repon.toLowerCase();
+    repon = repon.replace(/ /g,"");
+    repon = repon.replace(/,/g,".");
     span_ic = form.querySelector("#sp1");
     span_mes = form.querySelector("#sp2");
-    if (tab_radio[tab_rep[ta[k]]].checked)
+    if (tab_rep[ta[k]] == repon)
     {
         span_ic.innerHTML = "<b class='juste'>&#10004;</b>";
         span_mes.innerHTML = `<b class='juste'>Bonne réponse !</b>`;
