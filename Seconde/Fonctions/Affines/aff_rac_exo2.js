@@ -4,7 +4,7 @@ function definir()
     spanLien = document.getElementById('lien1');
     spanLien.innerHTML = hyperlien1;
 
-    nb_questions = 2;
+    nb_questions = 5;
     nb_prop = 4;
 
     q = "La racine de $f$ est : ";
