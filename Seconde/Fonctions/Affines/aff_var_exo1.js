@@ -6,6 +6,7 @@ function definir()
 
     nb_questions = 5;
     nb_prop = 3;
+    nb_pos = 10;
 
     q = "La fonction $f$ est : ";
     m = "Il faut regarder le signe du coefficient directeur.";

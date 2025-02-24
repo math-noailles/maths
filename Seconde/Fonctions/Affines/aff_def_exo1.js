@@ -6,6 +6,7 @@ function definir()
     
     nb_questions = 5;
     nb_prop = 4;
+    nb_pos = 10;
 
     q = "Le coefficient directeur de $f$ est : ";
     m = "Le coefficient directeur est devant la variable."

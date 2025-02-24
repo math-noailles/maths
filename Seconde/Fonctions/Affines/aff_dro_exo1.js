@@ -4,12 +4,28 @@ function definir()
     spanLien = document.getElementById('lien1');
     spanLien.innerHTML = hyperlien1;
 
-    nb_questions = 5;
+    nb_questions = 1;
     nb_prop = 4;
-    nb_pos = 10;
+    nb_pos = 2;
 
-    q = "La racine de $f$ est : ";
-    m = "La racine est le réel qui annule la fonction.";
+    q = "Soit le graphique suivant : ";
+
+    tab_im = [
+                "aff_dro_exo1_A.png",
+                "aff_dro_exo1_B.png"
+            ]
+
+    tab_q = [
+                "Le coefficient directeur de $f$ est : ",
+                "L'ordonnée à l'origine de $f$ est : ",
+                "Le coefficient directeur de $g$ est : ",
+                "L'ordonnée à l'origine de $g$ est : " 
+            ];
+
+    m1 = "C'est la variation en $y$ sur la variation en $x$.";
+    m2 = "C'est l'ordonnée de l'intersection avec l'axe des $y$.";
+
+    tab_m = [m1, m2, m1, m2];
 
     tab_enonce = [
         ["Soit $f(x)=-4x+6$", q, m],

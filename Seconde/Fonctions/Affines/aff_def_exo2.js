@@ -6,6 +6,7 @@ function definir()
 
     nb_questions = 5;
     nb_prop = 4;
+    nb_pos = 10;
 
     q = "L'ordonnée à l'origine de $f$ est : ";
     m = "L'ordonnée à l'origine est le terme constant.";

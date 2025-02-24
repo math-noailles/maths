@@ -1,9 +1,9 @@
 
 
-function creer_ta()
+function creer_tab()
 {
         ta = [];
-        for (i = 0; i < nb_pos; i++)
+        for (i = 0; i < 10; i++)
         {
           ta.push(i);
         }
@@ -18,7 +18,7 @@ function creer_ta()
 function afficher_enonce(num, localStorage)
 {
     localS = "'" + localStorage + "'";
-    ta = creer_ta();
+    ta = creer_tab();
     codeHTML = "";
     for (nq=1; nq<=num; nq++)
     {
@@ -29,16 +29,11 @@ function afficher_enonce(num, localStorage)
                         <b> ` + nq + `. </b>
                         ` + tab_enonce[ta[nq]][0] + 
                         `<br> <p> ` + tab_enonce[ta[nq]][1] + `</p>`;
-        for (i=0; i<nb_prop; i++)
-        {
-            codeHTML = codeHTML + 
-                        `
-                        <label class="radio-container">
-                            <input type="radio" name="q1">` + tab_prop[ta[nq]][i] + `
-                            <span class="checkmark"></span>
-                        </label>
-                        `;
-        }
+        codeHTML = codeHTML +
+                    `
+                    <input type='text' class='zone_saisie1' id='inp1' autocomplete='off'
+                        onkeypress="javascript:if (event.keyCode == 13) {verif('f` + nq + `', ` + nq + `);return false;}"/>
+                    `;
         codeHTML = codeHTML +
                     `
                     </div>
@@ -74,10 +69,14 @@ function afficher_enonce(num, localStorage)
 function verif(nom_form,  k)
 {
     form = document.forms[nom_form];
-    tab_radio = form.querySelectorAll('input[name="q1"][type="radio"]');
+    input_saisie = form.querySelector("#inp1");
+    repon = input_saisie.value;
+    repon = repon.toLowerCase();
+    repon = repon.replace(/ /g,"");
+    repon = repon.replace(/,/g,".");
     span_ic = form.querySelector("#sp1");
     span_mes = form.querySelector("#sp2");
-    if (tab_radio[tab_rep[ta[k]]].checked)
+    if (tab_rep[ta[k]] == repon)
     {
         span_ic.innerHTML = "<b class='juste'>&#10004;</b>";
         span_mes.innerHTML = `<b class='juste'>Bonne réponse !</b>`;

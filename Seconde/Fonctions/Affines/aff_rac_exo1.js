@@ -6,6 +6,7 @@ function definir()
 
     nb_questions = 5;
     nb_prop = 4;
+    nb_pos = 10;
 
     q = "La racine de $f$ est : ";
     m = "La racine est le réel qui annule la fonction.";
