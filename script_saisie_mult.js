@@ -3,7 +3,7 @@
 function creer_tab()
 {
         ta = [];
-        for (i = 0; i < 10; i++)
+        for (i = 0; i < nb_pos; i++)
         {
           ta.push(i);
         }
@@ -15,7 +15,7 @@ function creer_tab()
         return ta;
 }
 
-function afficher_enonce(num, localStorage)
+function afficher_enonce(num, localStorage, chemin)
 {
     localS = "'" + localStorage + "'";
     ta = creer_tab();
@@ -23,39 +23,46 @@ function afficher_enonce(num, localStorage)
     for (nq=1; nq<=num; nq++)
     {
         codeHTML = codeHTML + `
-            <div class="form-container">
-                <form id="f` + nq + `">
-                    <div class="question">
-                        <b> ` + nq + `. </b>
-                        ` + tab_enonce[ta[nq]][0] + 
-                        `<br> <p> ` + tab_enonce[ta[nq]][1] + `</p>`;
-        codeHTML = codeHTML +
-                    `
+                <div class="question">
+                    <b> ` + nq + `. </b>
+                        ` + tab_q[ta[nq]] + 
+                        `<br> <img src="` + chemin + `/images/` + tab_im[ta[nq]] + `"/><br><br>`;
+        for (ne=0; ne<nb_prop; ne++)
+        {
+            codeHTML = codeHTML + tab_e[ta[nq]][ne];
+            num_form = (nq - 1) * nb_prop + ne;
+            codeHTML = codeHTML + `
+                    <form id="f` + num_form + `">
                     <input type='text' class='zone_saisie1' id='inp1' autocomplete='off'
-                        onkeypress="javascript:if (event.keyCode == 13) {verif('f` + nq + `', ` + nq + `);return false;}"/>
+                        onkeypress="javascript:if (event.keyCode == 13) {verif('f` + num_form + `', ` + nq + `, ` + ne + `);return false;}"/>
                     `;
+            codeHTML = codeHTML +
+                        `
+                        <div>
+                            <span id='sp1' class='ic_rep'> &emsp; </span>
+                            <input class="bouton1" type="button" value="Valider" onClick="verif('f` + num_form + `', ` + nq + `, ` + ne + `)" />
+                            <br>
+                            <span class='juste2' id="sp2"> &ensp; </span>
+                        </div>
+                    </form><br>`;
+        }
         codeHTML = codeHTML +
-                    `
-                    </div>
-                    <span id='sp1' class='ic_rep'> &emsp; </span>
-                    <input class="bouton1" type="button" value="Valider" onClick="verif('f` + nq + `', ` + nq + `)" />
-                    <br>
-                    <span class='juste2' id="sp2"> &ensp; </span>
-                </form>
-            </div>
-        `;
+                    ` </div>
+                    
+            `;
         codeHTML = codeHTML +
                     `
                     <span id='m1'></span> <br>
                     `;
     }
+    num_q = num * nb_prop;
     codeHTML = codeHTML +
                     `
                     <p>
                         <input id='bv' class="bouton2" type="button" value="Valider l'exercice" onClick="verif_exo(`
                         + localS +
                         `,`
-                        + num + `)" />
+                        + num_q + `)" />
                         <span class="span_exo"></span>
                     </p>
                     `;
@@ -66,7 +73,7 @@ function afficher_enonce(num, localStorage)
 }
 
 
-function verif(nom_form,  k)
+function verif(nom_form,  k, l)
 {
     form = document.forms[nom_form];
     input_saisie = form.querySelector("#inp1");
@@ -74,9 +81,11 @@ function verif(nom_form,  k)
     repon = repon.toLowerCase();
     repon = repon.replace(/ /g,"");
     repon = repon.replace(/,/g,".");
+    repon = repon.toString();
+    repon = eval(repon);
     span_ic = form.querySelector("#sp1");
     span_mes = form.querySelector("#sp2");
-    if (tab_rep[ta[k]] == repon)
+    if (tab_rep[ta[k]][l] == repon)
     {
         span_ic.innerHTML = "<b class='juste'>&#10004;</b>";
         span_mes.innerHTML = `<b class='juste'>Bonne réponse !</b>`;
@@ -84,8 +93,9 @@ function verif(nom_form,  k)
     else
     {
         span_ic.innerHTML = "<b class='faux'>&#10060;</b>";
-        mes_err = `<b class="faux2">` + tab_enonce[ta[k]][2] + `</b>`;
+        mes_err = `<b class="faux2">` + tab_m[l] + `</b>`;
         span_mes.innerHTML = mes_err;
+         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     }
 }
 

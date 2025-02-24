@@ -87,6 +87,8 @@ function verif(nom_form,  k)
         span_ic.innerHTML = "<b class='faux'>&#10060;</b>";
         mes_err = `<b class="faux2">` + tab_enonce[ta[k]][2] + `</b>`;
         span_mes.innerHTML = mes_err;
+        // Réactualiser MathJax pour reprocesser les expressions LaTeX
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     }
 }
 

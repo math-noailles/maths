@@ -76,7 +76,6 @@ function verif(nom_form,  k)
     repon = repon.replace(/,/g,".");
     repon = repon.toString();
     repon = eval(repon);
-    alert(repon);
     span_ic = form.querySelector("#sp1");
     span_mes = form.querySelector("#sp2");
     if (tab_rep[ta[k]] == repon)
