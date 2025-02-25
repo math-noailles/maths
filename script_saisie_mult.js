@@ -22,11 +22,12 @@ function afficher_enonce(num, localStorage, chemin)
     codeHTML = "";
     for (nq=1; nq<=num; nq++)
     {
-        codeHTML = codeHTML + `
-                <div class="question">
-                    <b> ` + nq + `. </b>
-                        ` + tab_q[ta[nq]] + 
-                        `<br> <img src="` + chemin + `/images/` + tab_im[ta[nq]] + `"/><br><br>`;
+        codeHTML = codeHTML + `<div class="question"> <b> ` + nq + `. </b>` + tab_q[ta[nq]];
+        if (tab_im.length > 0)
+        {
+                        codeHTML = codeHTML + `   <br> <img src="` + chemin + `/images/` + tab_im[ta[nq]] + `"/>`;
+        }
+        codeHTML = codeHTML + `<br><br>`;
         for (ne=0; ne<nb_prop; ne++)
         {
             codeHTML = codeHTML + tab_e[ta[nq]][ne];
@@ -93,7 +94,7 @@ function verif(nom_form,  k, l)
     else
     {
         span_ic.innerHTML = "<b class='faux'>&#10060;</b>";
-        mes_err = `<b class="faux2">` + tab_m[l] + `</b>`;
+        mes_err = `<b class="faux2">` + tab_m[ta[k]][l] + `</b>`;
         span_mes.innerHTML = mes_err;
          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     }
