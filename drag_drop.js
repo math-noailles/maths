@@ -43,23 +43,30 @@ function afficher_enonce(num, localStorage, chemin)
                         codeHTML = codeHTML + `   <br> <img src="` + chemin + `/images/` + tab_im[ta[nq]] + `"/>`;
         }
         codeHTML = codeHTML + `<br><br>`;
-        
-        codeHTML = codeHTML + ` <div id="o1" class="drop1" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                    <div id="dr1" class="drag1" draggable="true" ondragstart="drag(event)">
-                                        Google
-                                    </div>
-                                </div>
-                                <br><br><br><br>
-                            `;
 
-        codeHTML = codeHTML + ` <div>
-                                    <label>
-                                        &emsp;FAI
-                                    </label><br>
-                                    <div id="d1" class="drop2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                                </div>
-                                <br><br><br><br>
+        for (i=0; i<nb_prop; i++)
+        {
+        
+            codeHTML = codeHTML + ` <div id="o1" class="drop1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                        <div id="dr1" class="drag1" draggable="true" ondragstart="drag(event)">`
+                                        + tab_prop[ta[nq]][i] +
+                                    `
+                                        </div>
+                                    </div>
                                 `;
+        }
+
+        for (i=0; i<nb_prop; i++)
+        {
+
+            codeHTML = codeHTML + ` <div>
+                                        <label> &emsp;` +
+                                            tab_lab[ta[nq]][i]
+                                        + ` : </label>
+                                        <div id="d1" class="drop2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                    </div>
+                                    `;
+        }
         /*
         for (ne=0; ne<nb_prop; ne++)
         {

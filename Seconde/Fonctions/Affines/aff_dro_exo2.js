@@ -4,13 +4,13 @@ function definir()
     spanLien = document.getElementById('lien1');
     spanLien.innerHTML = hyperlien1;
 
-    nb_questions = 4;
-    nb_prop = 2;
-    nb_pos = 8;
+    nb_questions = 1;
+    nb_prop = 3;
+    nb_pos = 2;
 
     q1 = "Soit le graphique suivant : ";
 
-    tab_q = []
+    tab_q = [];
 
     for (i=0; i<nb_pos; i++)
     {
@@ -18,44 +18,42 @@ function definir()
     }
 
     tab_im = [
-                `aff_dro_exo1_A.png`,
-                `aff_dro_exo1_B.png`,
-                `aff_dro_exo1_C.png`,
-                `aff_dro_exo1_D.png`,
-                `aff_dro_exo1_E.png`,
-                `aff_dro_exo1_F.png`,
-                `aff_dro_exo1_G.png`,
-                `aff_dro_exo1_H.png`
+                `aff_dro_exo2_A.png`
             ];
 
-    e1 = "Le coefficient directeur de $f$ est : ";
-    e2 = "L'ordonnée à l'origine de $f$ est : ";
+    e1 = "Glisser la bonne formule dans le bon cadre gris.";
 
     tab_e = []
     
     for (i=0; i<nb_pos; i++)
     {
-        tab_e.push([e1, e2]);
+        tab_e.push(e1);
     }
 
-    m1 = "C'est la variation en $y$ divisée par la variation en $x$.";
-    m2 = "Regarder l'intersection avec l'axe des $y$.";
+    m1 = "Regarder l'ordonnée à l'originbe et le coefficnet directeur.";
 
-    tab_m = []
+    tab_prop = [
+                ["$f(x)=x+2$", "$f(x)=-2x+3$", "$f(x)=3x-1$"],
+                ["$f(x)=2-x$", "$f(x)=1$", "$f(x)=2x-1$"]
+                ];
+
+    lab1 = ["d1", "d2", "d3"];
+
+    tab_lab = [];
+
+    for (i=0; i<nb_pos; i++)
+    {
+        tab_lab.push(lab1);
+    }
+
+    tab_m = [];
     
     for (i=0; i<nb_pos; i++)
     {
-        tab_m.push([m1, m2]);
+        tab_m.push(m1);
     }
 
     tab_rep = [
-                    ["3", "-1"], 
-                    ["0.25", "1"],
-                    ["-1", "2"],
-                    ["-1", "3"],
-                    ["2", "0"],
-                    ["0", "2"],
-                    ["1", "1"],
-                    ["-0.5", "1"]
+                    
               ];
 }

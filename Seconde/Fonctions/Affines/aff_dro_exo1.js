@@ -10,7 +10,7 @@ function definir()
 
     q1 = "Soit le graphique suivant : ";
 
-    tab_q = []
+    tab_q = [];
 
     for (i=0; i<nb_pos; i++)
     {
@@ -31,7 +31,7 @@ function definir()
     e1 = "Le coefficient directeur de $f$ est : ";
     e2 = "L'ordonnée à l'origine de $f$ est : ";
 
-    tab_e = []
+    tab_e = [];
     
     for (i=0; i<nb_pos; i++)
     {
@@ -41,7 +41,7 @@ function definir()
     m1 = "C'est la variation en $y$ divisée par la variation en $x$.";
     m2 = "Regarder l'intersection avec l'axe des $y$.";
 
-    tab_m = []
+    tab_m = [];
     
     for (i=0; i<nb_pos; i++)
     {

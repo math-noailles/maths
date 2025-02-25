@@ -380,10 +380,9 @@ td
 
 .drop1 
 {
-  float: left;
   width: 200px;
-  height: 30px;
-  margin: 10px;
+  height: 15px;
+  margin: 0.2em;
   padding: 10px;
   border: none;
   cursor: pointer;
@@ -392,10 +391,9 @@ td
 
 .drop2 
 {
-  float: left;
   width: 200px;
-  height: 60px;
-  margin: 10px;
+  height: 15px;
+  margin: 0.2em;
   padding: 10px;
   border: 1px solid black;
   cursor: pointer;
@@ -405,9 +403,9 @@ td
 .drag1 
 {
   color:maroon;
-  width: 180px;
-  height: 30px;
+  width: 200px;
+  height: 15px;
   font-weight:bold;
-  font-size:20px;
+  font-size:100%;
   background-color:none;
 }
