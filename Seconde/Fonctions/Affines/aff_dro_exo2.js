@@ -4,9 +4,9 @@ function definir()
     spanLien = document.getElementById('lien1');
     spanLien.innerHTML = hyperlien1;
 
-    nb_questions = 2;
+    nb_questions = 3;
     nb_prop = 3;
-    nb_pos = 3;
+    nb_pos = 6;
 
     q1 = "Soit le graphique suivant : ";
 
@@ -20,7 +20,10 @@ function definir()
     tab_im = [
                 `aff_dro_exo2_A.png`,
                 `aff_dro_exo2_B.png`,
-                'aff_dro_exo2_C.png'
+                'aff_dro_exo2_C.png',
+                'aff_dro_exo2_D.png',
+                'aff_dro_exo2_E.png',
+                'aff_dro_exo2_F.png'
             ];
 
     e1 = "Glisser les formules correspondant aux droites d1, d2 et d3 dans cet ordre dans le cadre ci-dessous.";
@@ -33,15 +36,21 @@ function definir()
     }
 
     tab_prop = [
-                ["$x+2$", "$-2x+3$", "$0,5x-1$"],
+                ["$x+2$", "$-2x+3$", "$0.5x-1$"],
                 ["$2-x$", "$1$", "$2x-1$"],
-                ["$3-x$", "$x$", "$2x-1$"]
+                ["$3-x$", "$x$", "$2x-1$"],
+                ["$3-0.5x$","$0.25x+1$", "$3x-1$" ],
+                ["$2-2x$", "$1-x$", "$0.5x+1$"],
+                ["$0.5x+1$", "$2-.25x$", "$x-1$" ]
                 ];
 
     ordre_bon = [
                     [0, 1, 2],
                     [1, 2, 0],
-                    [2, 1, 0]
+                    [2, 1, 0],
+                    [1, 2, 0],
+                    [0, 2, 1],
+                    [2, 0, 1]
         ];
 
     tab_m = [];

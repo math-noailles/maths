@@ -378,61 +378,27 @@ td
     background: white;
 }
 
-.drop1 
-{
-  width: 200px;
-  height: 30px;
-  margin: 0.5em;
-  padding: 0.1em;
-  border: none;
-  cursor: pointer;
-  background-color:white;
-}
-
-.drop2 
-{
-  width: 200px;
-  height: 30px;
-  margin: 0.5em;
-  padding: 0.1em;
-  border: 1px solid black;
-  cursor: pointer;
-  background-color:silver;
-}
-
-.drag1 
-{
-  color:maroon;
-  width: 200px;
-  margin:0em;
-  height: 15px;
-  font-weight:bold;
-  font-size:18px;
-  background-color:none;
-}
-
 #dragDropContainer {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #dropZone {
     width: 320px;
-    height: 100px;
+    height: 80px;
     border: 2px dashed #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    margin:5px;
 }
 
 #draggableItems {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
 }
 
 .draggable {
-    padding: 30px 10px;
+    padding: 30px 10px 10px 10px;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     cursor: grab;

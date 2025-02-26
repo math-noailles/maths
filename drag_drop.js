@@ -45,7 +45,7 @@ function afficher_enonce(num, localStorage, chemin)
         {
                         codeHTML = codeHTML + `   <br> <img src="` + chemin + `/images/` + tab_im[ta[nq]] + `"/>`;
         }
-        codeHTML = codeHTML + `<br><br>
+        codeHTML = codeHTML + `
                                     <div id="dragDropContainer">
                                         <p>` + tab_e[ta[nq]] + `</p>
                                         <div id="dropZone" class='dropZone' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
