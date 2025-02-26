@@ -9,7 +9,7 @@ function definir()
     nb_pos = 10;
 
     q = "L'ordonnée à l'origine de $f$ est : ";
-    m = "L'ordonnée à l'origine est le terme constant.";
+    m = "C'est le terme constant sans $x$.";
 
     tab_enonce = [
         ["Soit $f(x)=-4x+3$", q, m],

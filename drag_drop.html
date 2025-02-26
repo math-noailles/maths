@@ -27,12 +27,6 @@
             function mainScript(scriptName, cheminName) {
                 definir();
                 afficher_enonce(nb_questions, scriptName, cheminName);
-                MathJax.Hub.Config({
-                extensions: ["tex2jax.js"], jax: ["input/TeX", "output/HTML-CSS"],
-                TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"] },
-                tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ], processEscapes: true }
-                });
             }
         </script>
         

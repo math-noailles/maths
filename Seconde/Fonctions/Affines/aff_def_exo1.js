@@ -9,7 +9,7 @@ function definir()
     nb_pos = 10;
 
     q = "Le coefficient directeur de $f$ est : ";
-    m = "Le coefficient directeur est devant la variable."
+    m = "C'est le coefficient devant la variable $x$."
 
     tab_enonce = [
             ["Soit $f(x)=-4x+3$", q, m],

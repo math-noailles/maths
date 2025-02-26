@@ -8,16 +8,16 @@ function definir()
     nb_prop = 2;
     nb_pos = 10;
 
-    q1 = "Soit $f(x)=2x-3$ : ";
-    q2 = "Soit $f(x)=4-x$ : ";
-    q3 = "Soit $f(x)=x$ : ";
-    q4 = "Soit $f(x)=5x+7$ : ";
-    q5 = "Soit $f(x)=8-3x$ : ";
-    q6 = "Soit $f(x)=6+x$ : ";
-    q7 = "Soit $f(x)=0.5x-7$ : ";
-    q8 = "Soit $f(x)=-9x+3$ : ";
-    q9 = "Soit $f(x)=0.5-0.2x$ : ";
-    q10 = "Soit $f(x)=-3$ : ";
+    q1 = "Soit $f(x)=2x-3$";
+    q2 = "Soit $f(x)=4-x$";
+    q3 = "Soit $f(x)=x$";
+    q4 = "Soit $f(x)=5x+7$";
+    q5 = "Soit $f(x)=8-3x$";
+    q6 = "Soit $f(x)=6+x$";
+    q7 = "Soit $f(x)=0.5x-7$";
+    q8 = "Soit $f(x)=-9x+3$";
+    q9 = "Soit $f(x)=0.5-0.2x$";
+    q10 = "Soit $f(x)=-3$";
 
     tab_q = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
 

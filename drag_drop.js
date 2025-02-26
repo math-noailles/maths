@@ -1,18 +1,18 @@
-function allowDrop(ev) 
-{
-  ev.preventDefault();
+function allowDrop(event) {
+    event.preventDefault();
 }
 
-function drag(ev) 
-{
-  ev.dataTransfer.setData("text", ev.target.id);
+function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
 }
 
-function drop(ev) 
-{
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    var draggedElement = document.getElementById(data);
+    if (event.target.classList.contains('dropZone')) {
+        event.target.appendChild(draggedElement);
+    }
 }
 
 function creer_tab()
@@ -37,74 +37,52 @@ function afficher_enonce(num, localStorage, chemin)
     codeHTML = "";
     for (nq=1; nq<=num; nq++)
     {
-        codeHTML = codeHTML + `<div class="question"> <b> ` + nq + `. </b>` + tab_q[ta[nq]];
+        codeHTML = codeHTML + `
+            <div class="form-container">
+                <form id="f` + nq + `">
+                    <div class="question"> <b> ` + nq + `. </b>` + tab_q[ta[nq]];
         if (tab_im.length > 0)
         {
                         codeHTML = codeHTML + `   <br> <img src="` + chemin + `/images/` + tab_im[ta[nq]] + `"/>`;
         }
-        codeHTML = codeHTML + `<br><br>`;
-
-        for (i=0; i<nb_prop; i++)
-        {
-        
-            codeHTML = codeHTML + ` <div id="o1" class="drop1" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                        <div id="dr1" class="drag1" draggable="true" ondragstart="drag(event)">`
-                                        + tab_prop[ta[nq]][i] +
-                                    `
+        codeHTML = codeHTML + `<br><br>
+                                    <div id="dragDropContainer">
+                                        <p>` + tab_e[ta[nq]] + `</p>
+                                        <div id="dropZone" class='dropZone' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        <div id="draggableItems">`;
+            for (i=0; i<nb_prop; i++)
+            {
+                num_it = (nq - 1) * 3 + i;
+                codeHTML = codeHTML +   `<div id='it` + num_it + `'
+                 class="draggable" draggable="true" ondragstart="drag(event)">`
+                                            + tab_prop[ta[nq]][i] + 
+                                        `</div>`;
+            }
+        codeHTML = codeHTML + `
                                         </div>
-                                    </div>
-                                `;
-        }
+                                    </div>`;
 
-        for (i=0; i<nb_prop; i++)
-        {
-
-            codeHTML = codeHTML + ` <div>
-                                        <label> &emsp;` +
-                                            tab_lab[ta[nq]][i]
-                                        + ` : </label>
-                                        <div id="d1" class="drop2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                                    </div>
-                                    `;
-        }
-        /*
-        for (ne=0; ne<nb_prop; ne++)
-        {
-            codeHTML = codeHTML + tab_e[ta[nq]][ne];
-            num_form = (nq - 1) * nb_prop + ne;
-            codeHTML = codeHTML + `
-                    <form id="f` + num_form + `">
-                    <input type='text' class='zone_saisie1' id='inp1' autocomplete='off'
-                        onkeypress="javascript:if (event.keyCode == 13) {verif('f` + num_form + `', ` + nq + `, ` + ne + `);return false;}"/>
-                    `;
-            codeHTML = codeHTML +
-                        `
-                        <div>
-                            <span id='sp1' class='ic_rep'> &emsp; </span>
-                            <input class="bouton1" type="button" value="Valider" onClick="verif('f` + num_form + `', ` + nq + `, ` + ne + `)" />
-                            <br>
-                            <span class='juste2' id="sp2"> &ensp; </span>
-                        </div>
-                    </form><br>`;
-        }
         codeHTML = codeHTML +
-                    ` </div>
-                    
-            `;
+                    `
+                    </div>
+                        <span id='sp1' class='ic_rep'> &emsp; </span>
+                        <input class="bouton1" type="button" value="Valider" onClick="verif('f` + nq + `', ` + nq + `)" />
+                        <br>
+                        <span class='juste2' id="sp2"> &ensp; </span>
+                </form>
+            </div>`;
         codeHTML = codeHTML +
                     `
                     <span id='m1'></span> <br>
                     `;
-        */
     }
-    num_q = num * nb_prop;
     codeHTML = codeHTML +
                     `
                     <p>
                         <input id='bv' class="bouton2" type="button" value="Valider l'exercice" onClick="verif_exo(`
                         + localS +
                         `,`
-                        + num_q + `)" />
+                        + num + `)" />
                         <span class="span_exo"></span>
                     </p>
                     `;
@@ -115,20 +93,27 @@ function afficher_enonce(num, localStorage, chemin)
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
 
-
 function verif(nom_form,  k, l)
 {
     form = document.forms[nom_form];
+    dropZone = form.querySelector("#dropZone");
+    items = dropZone.getElementsByClassName("draggable");
+    ordre_saisi = [];
+
+    for (i = 0; i < items.length; i++) {
+        ordre_saisi.push(items[i].id);
+    }
     input_saisie = form.querySelector("#inp1");
-    repon = input_saisie.value;
-    repon = repon.toLowerCase();
-    repon = repon.replace(/ /g,"");
-    repon = repon.replace(/,/g,".");
-    repon = repon.toString();
-    repon = eval(repon);
     span_ic = form.querySelector("#sp1");
     span_mes = form.querySelector("#sp2");
-    if (tab_rep[ta[k]][l] == repon)
+    bon_ordre = []
+    for (i=0; i<3; i++)
+    {
+        n = 3 * (k-1) + ordre_bon[ta[k]][i];
+        it = "it" + n;
+        bon_ordre.push(it);
+    }
+    if (JSON.stringify(bon_ordre) === JSON.stringify(ordre_saisi))
     {
         span_ic.innerHTML = "<b class='juste'>&#10004;</b>";
         span_mes.innerHTML = `<b class='juste'>Bonne réponse !</b>`;
@@ -136,7 +121,7 @@ function verif(nom_form,  k, l)
     else
     {
         span_ic.innerHTML = "<b class='faux'>&#10060;</b>";
-        mes_err = `<b class="faux2">` + tab_m[ta[k]][l] + `</b>`;
+        mes_err = `<b class="faux2">` + tab_m[ta[k]] + `</b>`;
         span_mes.innerHTML = mes_err;
          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     }

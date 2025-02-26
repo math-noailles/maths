@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Drag and Drop</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="drag_drop3.js"></script>
+</head>
+<body>
+    <form id="dragDropForm">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+
+        <div id="dragDropContainer">
+            <p>Glissez et déposez les éléments ici :</p>
+            <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="draggableItems">
+                <div id='it1' class="draggable" draggable="true" ondragstart="drag(event)">Élément 1</div>
+                <div id='it2' class="draggable" draggable="true" ondragstart="drag(event)">Élément 2</div>
+                <div id='it3' class="draggable" draggable="true" ondragstart="drag(event)">Élément 3</div>
+            </div>
+        </div>
+
+        <button type="submit">Soumettre</button>
+    </form>
+    
+</body>
+</html>
