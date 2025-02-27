@@ -102,11 +102,10 @@ function verif_exo(chaine, n)
     if (l == 2 * n)
     {
         m.innerHTML = "<b class='juste2'>Exercice validé.</b>";
+        bout.style.backgroundColor = "green";
         if(typeof localStorage!='undefined') 
         {
             localStorage.setItem(chaine, 1);
-            bout.style.backgroundColor = "green";
-
         }
     }
     else
