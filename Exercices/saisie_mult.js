@@ -1,4 +1,6 @@
-function creer_ta()
+
+
+function creer_tab()
 {
         ta = [];
         for (i = 0; i < nb_pos; i++)
@@ -13,52 +15,55 @@ function creer_ta()
         return ta;
 }
 
-function afficher_enonce(num, localStorage)
+function afficher_enonce(num, localStorage, chemin)
 {
     localS = "'" + localStorage + "'";
-    ta = creer_ta();
+    ta = creer_tab();
     codeHTML = "";
     for (nq=1; nq<=num; nq++)
     {
-        codeHTML = codeHTML + `
-            <div class="form-container">
-                <form id="f` + nq + `">
-                    <div class="question">
-                        <b> ` + nq + `. </b>
-                        ` + tab_enonce[ta[nq]][0] + 
-                        `<br> <p> ` + tab_enonce[ta[nq]][1] + `</p>`;
-        for (i=0; i<nb_prop; i++)
+        codeHTML = codeHTML + `<div class="question"> <b> ` + nq + `. </b>` + tab_q[ta[nq]];
+        if (tab_im.length > 0)
         {
-            codeHTML = codeHTML + 
+                        codeHTML = codeHTML + `   <br> <img src="../` + chemin + `/images/` + tab_im[ta[nq]] + `"/>`;
+        }
+        codeHTML = codeHTML + `<br><br>`;
+        for (ne=0; ne<nb_prop; ne++)
+        {
+            codeHTML = codeHTML + tab_e[ta[nq]][ne];
+            num_form = (nq - 1) * nb_prop + ne;
+            codeHTML = codeHTML + `
+                    <form id="f` + num_form + `">
+                    <input type='text' class='zone_saisie1' id='inp1' autocomplete='off'
+                        onkeypress="javascript:if (event.keyCode == 13) {verif('f` + num_form + `', ` + nq + `, ` + ne + `);return false;}"/>
+                    `;
+            codeHTML = codeHTML +
                         `
-                        <label class="radio-container">
-                            <input type="radio" name="q1">` + tab_prop[ta[nq]][i] + `
-                            <span class="checkmark"></span>
-                        </label>
-                        `;
+                        <div>
+                            <span id='sp1' class='ic_rep'> &emsp; </span>
+                            <input class="bouton1" type="button" value="Valider" onClick="verif('f` + num_form + `', ` + nq + `, ` + ne + `)" />
+                            <br>
+                            <span class='juste2' id="sp2"> &ensp; </span>
+                        </div>
+                    </form><br>`;
         }
         codeHTML = codeHTML +
-                    `
-                    </div>
-                    <span id='sp1' class='ic_rep'> &emsp; </span>
-                    <input class="bouton1" type="button" value="Valider" onClick="verif('f` + nq + `', ` + nq + `)" />
-                    <br>
-                    <span class='juste2' id="sp2"> &ensp; </span>
-                </form>
-            </div>
-        `;
+                    ` </div>
+                    
+            `;
         codeHTML = codeHTML +
                     `
                     <span id='m1'></span> <br>
                     `;
     }
+    num_q = num * nb_prop;
     codeHTML = codeHTML +
                     `
                     <p>
                         <input id='bv' class="bouton2" type="button" value="Valider l'exercice" onClick="verif_exo(`
                         + localS +
                         `,`
-                        + num + `)" />
+                        + num_q + `)" />
                         <span class="span_exo"></span>
                     </p>
                     `;
@@ -69,13 +74,19 @@ function afficher_enonce(num, localStorage)
 }
 
 
-function verif(nom_form,  k)
+function verif(nom_form,  k, l)
 {
     form = document.forms[nom_form];
-    tab_radio = form.querySelectorAll('input[name="q1"][type="radio"]');
+    input_saisie = form.querySelector("#inp1");
+    repon = input_saisie.value;
+    repon = repon.toLowerCase();
+    repon = repon.replace(/ /g,"");
+    repon = repon.replace(/,/g,".");
+    repon = repon.toString();
+    repon = eval(repon);
     span_ic = form.querySelector("#sp1");
     span_mes = form.querySelector("#sp2");
-    if (tab_radio[tab_rep[ta[k]]].checked)
+    if (tab_rep[ta[k]][l] == repon)
     {
         span_ic.innerHTML = "<b class='juste'>&#10004;</b>";
         span_mes.innerHTML = `<b class='juste'>Bonne réponse !</b>`;
@@ -83,10 +94,9 @@ function verif(nom_form,  k)
     else
     {
         span_ic.innerHTML = "<b class='faux'>&#10060;</b>";
-        mes_err = `<b class="faux2">` + tab_enonce[ta[k]][2] + `</b>`;
+        mes_err = `<b class="faux2">` + tab_m[ta[k]][l] + `</b>`;
         span_mes.innerHTML = mes_err;
-        // Réactualiser MathJax pour reprocesser les expressions LaTeX
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     }
 }
 
@@ -100,10 +110,11 @@ function verif_exo(chaine, n)
     if (l == 2 * n)
     {
         m.innerHTML = "<b class='juste2'>Exercice validé.</b>";
-        bout.style.backgroundColor = "green";
         if(typeof localStorage!='undefined') 
         {
             localStorage.setItem(chaine, 1);
+            bout.style.backgroundColor = "green";
+
         }
     }
     else

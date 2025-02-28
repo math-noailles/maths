@@ -3,18 +3,7 @@
 
     <head>
         
-        <title>Exercice</title>
-
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({
-            extensions: ["tex2jax.js"], jax: ["input/TeX", "output/HTML-CSS"],
-            TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"] },
-            tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ], processEscapes: true }
-            });
-        </script>
-        
-
+        <title>Exercice</title> 
         <script>
             window.onload = function() {
                 const params = new URLSearchParams(window.location.search);
@@ -26,7 +15,7 @@
                     script.src = scriptURL;
                     script.onload = function() {
                         // Script principal à exécuter après le script dynamique
-                        mainScript(scriptName);
+                        mainScript(scriptName, cheminName);
                     };
                     document.head.appendChild(script);
                 } else {
@@ -35,16 +24,30 @@
                 }
             };
 
-            function mainScript(scriptName) {
+            function mainScript(scriptName, cheminName) {
                 definir();
-                afficher_enonce(nb_questions, scriptName);
+                afficher_enonce(nb_questions, scriptName, cheminName);
+                MathJax.Hub.Config({
+                extensions: ["tex2jax.js"], jax: ["input/TeX", "output/HTML-CSS"],
+                TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"] },
+                tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ], processEscapes: true }
+                });
             }
         </script>
         
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../style.css" />
-        <script src="qcm.js"></script>
+        <script src="saisie_mult.js"></script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+            extensions: ["tex2jax.js"], jax: ["input/TeX", "output/HTML-CSS"],
+            TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"] },
+            tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ], processEscapes: true }
+            });
+        </script>
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
 
     </head>

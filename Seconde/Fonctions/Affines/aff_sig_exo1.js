@@ -1,6 +1,6 @@
 function definir()
 {
-    hyperlien1 = '<a href="Seconde/Fonctions/Affines/affines_signe.html"><span class="parent">Signe</span></a>';
+    hyperlien1 = '<a href="../Seconde/Fonctions/Affines/affines_signe.html"><span class="parent">Signe</span></a>';
     spanLien = document.getElementById('lien1');
     spanLien.innerHTML = hyperlien1;
     

@@ -1,9 +1,9 @@
 
 
-function creer_tab()
+function creer_ta()
 {
         ta = [];
-        for (i = 0; i < 10; i++)
+        for (i = 0; i < nb_pos; i++)
         {
           ta.push(i);
         }
@@ -17,7 +17,8 @@ function creer_tab()
 
 function afficher_enonce(num, localStorage)
 {
-    ta = creer_tab();
+    localS = "'" + localStorage + "'";
+    ta = creer_ta();
     codeHTML = "";
     for (nq=1; nq<=num; nq++)
     {
@@ -57,7 +58,7 @@ function afficher_enonce(num, localStorage)
                     `
                     <p>
                         <input id='bv' class="bouton2" type="button" value="Valider l'exercice" onClick="verif_exo(`
-                        + localStorage +
+                        + localS +
                         `,`
                         + num + `)" />
                         <span class="span_exo"></span>
@@ -65,6 +66,8 @@ function afficher_enonce(num, localStorage)
                     `;
     spanForm = document.getElementById('form');
     spanForm.innerHTML = codeHTML;
+    // Réactualiser MathJax pour reprocesser les expressions LaTeX
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 }
 
 
@@ -84,6 +87,8 @@ function verif(nom_form,  k)
         span_ic.innerHTML = "<b class='faux'>&#10060;</b>";
         mes_err = `<b class="faux2">` + tab_enonce[ta[k]][2] + `</b>`;
         span_mes.innerHTML = mes_err;
+        // Réactualiser MathJax pour reprocesser les expressions LaTeX
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     }
 }
 
@@ -97,11 +102,10 @@ function verif_exo(chaine, n)
     if (l == 2 * n)
     {
         m.innerHTML = "<b class='juste2'>Exercice validé.</b>";
+        bout.style.backgroundColor = "green";
         if(typeof localStorage!='undefined') 
         {
             localStorage.setItem(chaine, 1);
-            bout.style.backgroundColor = "green";
-
         }
     }
     else
